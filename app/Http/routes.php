@@ -11,14 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
-Route::get('admin', function () {
-    return view('layouts/admin_template');
+Route::group(['middleware' => 'web'], function(){
+    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
+    Route::group(['middleware'=>['auth']],function() {
+        
+    });
 });

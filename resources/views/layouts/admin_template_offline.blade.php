@@ -53,12 +53,7 @@ desired effect
 -->
 <body class="hold-transition skin-black-light sidebar-mini">
 <div class="wrapper">
-  @if (!Auth::guest())    <!-- ÁREA DO SISTEMA -->
-    <!-- Header -->
-    @include('admin/header')
-    <!-- Sidebar -->
-    @include('admin/sidebar')
-  @endif
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

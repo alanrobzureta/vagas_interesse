@@ -1,82 +1,87 @@
 @extends('layouts.admin_template')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <a href="#"><b>Cadastro</b>Vagas</a>
+  </div>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+  <div class="register-box-body">
+    <p class="login-box-msg">Registre-se preenchendo o formulário abaixo</p>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+    <form action="{{ url('/register') }}" method="post">
+        {{ csrf_field() }}
+      <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
+          <input type="text" class="form-control" placeholder="nome" value="{{ old('name') }}" id="name" name="name">
+            @if ($errors->has('name'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+            @endif
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+        
+      <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
+        <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" id="email" name="email">
+            @if ($errors->has('email'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+        
+      <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+          <input type="password" class="form-control" placeholder="senha" id="password" name="password">
+            @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+        
+      <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+            
+                <input id="password-confirm" placeholder="Repetir senha" type="password" class="form-control" name="password_confirmation">
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                @if ($errors->has('password_confirmation'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                @endif
+               <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            
+      </div>        
+     
+        
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button>
         </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <div class="social-auth-links text-center">      
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Cadastre-se pelo Facebook</a>
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Cadastre-se pelo Google+</a>
     </div>
+
+    <a href="{{ url('/login') }}" class="text-center">Já possuo cadastro</a>
+  </div>
+  <!-- /.form-box -->
 </div>
+<!-- /.register-box -->
+
+<!-- jQuery 3.1.1 -->
+<script src="../../plugins/jQuery/jquery-3.1.1.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
+
+</body>
 @endsection
