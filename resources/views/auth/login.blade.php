@@ -2,7 +2,7 @@
 @section('content')
 <div class="login-box">
 <div class="login-logo">
-  <a href="{{ url('/login') }}"><b>Vagas</b>Interesses</a>
+  <a href="{{ url('/login') }}"><b>RH</b>ot</a>
 </div>
 <!-- /.login-logo -->
 <div class="login-box-body">
@@ -44,6 +44,7 @@
           </button>
       </div>
       <p><a class="btn btn-link" href="{{ url('/password/reset') }}">Esqueceu sua senha?</a></p>
+      <p><a class="btn btn-link" href="{{ url('/register') }}">Registre-se</a></p>
       <!--<p><a class="btn btn-link" href="{{ url('/register') }}">Registre-se</a></p>-->
       <!-- /.col -->
     </div>

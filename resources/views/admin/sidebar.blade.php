@@ -7,7 +7,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ asset("../bower_components/AdminLTE/dist/img/logo_adonai-160x160.jpg") }}" class="img-circle" alt="User Image">
+          <img src="{{ asset("../bower_components/AdminLTE/dist/img/user1-128x128.jpg") }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
             @if (!Auth::guest())
@@ -37,18 +37,19 @@
       <ul class="sidebar-menu">
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Processos</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Linhas</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Interesses</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
+        <li><a href="#"><i class="fa fa-rub"></i> <span>Planos</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Extras</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Gerenciamento</span>
+          <a href="#"><i class="fa fa-gears"></i> <span>Gerenciamento</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Gerenciamento de Linhas</a></li>
-            <li><a href="#">Gerenciamento de Emails</a></li>
+            <li><a href="{{url('/users/')}}">Usuários</a></li>
+            <li><a href="{{url('/perfis/')}}">Perfis</a></li>
+            <li><a href="{{url('/permissions/')}}">Permissões</a></li>
           </ul>
         </li>
       </ul>

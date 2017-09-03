@@ -16,12 +16,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("../bower_components/AdminLTE/dist/css/AdminLTE.min.css") }}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
   -->
+  
   <link rel="stylesheet" href="{{ asset("../bower_components/AdminLTE/dist/css/skins/_all-skins.min.css") }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -167,6 +170,9 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{ asset("../bower_components/AdminLTE/dist/js/app.min.js") }}"></script>
 
+<script src="{{ asset("../bower_components/AdminLTE/plugins/datatables/jquery.dataTables.min.js") }}"></script>
+<script src="{{ asset("../bower_components/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js") }}"></script>
+@yield('script')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

@@ -155,6 +155,11 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+        /*
+         * Validator CPF - https://github.com/jailtonsc/validador-cpf-laravel
+         */
+        ValidadorCpf\CpfServiceProvider::class,
 
     ],
 

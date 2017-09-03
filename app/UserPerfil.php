@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Linhas extends Model
+class UserPerfil extends Model
 {
     //
 }

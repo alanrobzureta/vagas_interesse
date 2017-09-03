@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $processos = \App\Processos::all();
-        return view('home',  compact('processos'));
+        $usuarios = \App\User::all();
+        return view('home',  compact('usuarios'));
     }
 }

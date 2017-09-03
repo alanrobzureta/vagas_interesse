@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class alertas extends Model
+class PerfilPermissao extends Model
 {
     //
 }

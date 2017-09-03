@@ -4,7 +4,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="#"><b>Cadastro</b>Vagas</a>
+    <a href="#"><b>RH</b>ot</a>
   </div>
 
   <div class="register-box-body">
@@ -21,6 +21,16 @@
             @endif
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
+        
+      <div class="form-group has-feedback{{ $errors->has('cpf') ? ' has-error' : '' }}">
+          <input type="text" class="form-control" placeholder="cpf" value="{{ old('cpf') }}" id="cpf" name="cpf">
+            @if ($errors->has('cpf'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('cpf') }}</strong>
+                </span>
+            @endif
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>  
         
       <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
         <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" id="email" name="email">
@@ -77,11 +87,11 @@
 <!-- /.register-box -->
 
 <!-- jQuery 3.1.1 -->
-<script src="../../plugins/jQuery/jquery-3.1.1.min.js"></script>
+<script src="{{ asset("../bower_components/AdminLTE/plugins/jQuery/jquery-3.1.1.min.js") }}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ asset("../bower_components/AdminLTE/bootstrap/js/bootstrap.min.js") }}"></script>
 <!-- iCheck -->
-<script src="../../plugins/iCheck/icheck.min.js"></script>
+<script src="{{ asset("../bower_components/AdminLTE/plugins/iCheck/icheck.min.js") }}"></script>
 
 </body>
 @endsection
