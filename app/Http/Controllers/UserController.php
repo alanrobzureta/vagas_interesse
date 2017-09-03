@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -36,7 +36,7 @@ class UserController extends Controller
      * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\UserRequest $request)
+    public function store(UserRequest $request)
     {
         $user = new User();
         $user->name = $request->name;
@@ -45,7 +45,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);        
         $user->save();
         
-        return redirect('/users/');
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -69,7 +69,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -79,9 +81,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        
+        $user = User::find($id);
+        
+        $user->name = $request->name;
+        $user->cpf = $request->cpf;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);     
+        
+        $user->save();
+        
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -92,6 +104,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        
+        return redirect('/users/');
     }
 }

@@ -25,6 +25,9 @@ Route::group(['middleware' => 'web'], function(){
             Route::get('/create','UserController@create');
             Route::post('/store','UserController@store');
             Route::get('/{id}','UserController@show');
+            Route::get('/{id}/edit','UserController@edit');
+            Route::post('/{id}','UserController@update');
+            Route::get('/{id}/delete','UserController@destroy');
         });
         
         /*

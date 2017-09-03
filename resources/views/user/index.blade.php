@@ -1,6 +1,12 @@
 @extends('layouts.admin_template')
 
 @section('content')
+
+<p class="text-right">
+    <a href="{{url('/users/create')}}" class="btn btn-default navbar-btn"><i class="fa fa-edit"></i>Cadastrar</a>
+</p>
+
+
 <table id="tbl_users" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -10,14 +16,14 @@
                 <th>Operações</th>                
             </tr>
         </thead>
-        <tfoot>
+<!--        <tfoot>
             <tr>
-                <th> - - - </th>
-                <th> - - -</th>
-                <th> - - -</th>
+                <th></th>
+                <th></th>
+                <th></th>
                 <th></th>                
             </tr>
-        </tfoot>
+        </tfoot>-->
         <tbody> 
             @foreach($users as $user)
                 <tr>
@@ -26,8 +32,8 @@
                     <td>{{$user->email}}</td>                    
                     <td>
                         <a href="{{url('/users/'.$user->id)}}"><i class="fa fa-eye"></i></a>
-                        <a href="{{url('/users/')}}"><i class="fa fa-pencil"></i></a>
-                        <a href="{{url('/users/')}}"><i class="fa fa-remove"></i></a>
+                        <a href="{{url('/users/'.$user->id.'/edit')}}"><i class="fa fa-pencil"></i></a>
+                        <a href="{{url('/users/'.$user->id.'/delete')}}"><i class="fa fa-remove"></i></a>
                     </td>                                        
                 </tr>
             @endforeach
