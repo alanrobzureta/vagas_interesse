@@ -3,7 +3,7 @@
 @section('content')
 <div class="box box-default">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Dados de {{ $user->name }}</h3>
+                  <h3 class="box-title">Dados de {{ $perfil->nome }}</h3>
 
                   <div class="box-tools pull-right">                    
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -16,10 +16,7 @@
                 <div class="box-body no-padding">
                   <ul class="users-list clearfix">
                     <li>
-                        <img src="{{ asset("../bower_components/AdminLTE/dist/img/user1-128x128.jpg") }}" alt="Imagem">
-                        <a class="users-list-name" href="#">{{$user->name}}</a>
-                        <span class="users-list-date">CPF: {{$user->cpf}}</span>
-                        <span class="users-list-date">email: {{$user->email}}</span>
+                        <a class="users-list-name" href="#">{{$perfil->nome}}</a>
                         <span class="users-list-date">Data de Cadastro: {{$user->created_at}}</span>
                         <span class="users-list-date">Última Alteração: {{$user->updated_at}}</span>
                     </li>                            
@@ -28,7 +25,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="{{url('/users/')}}" class="btn btn-default">Voltar</a>
+                  <a href="{{url('/perfis/')}}" class="btn btn-default">Voltar</a>
                 </div>
                 <!-- /.box-footer -->
               </div>

@@ -49,7 +49,7 @@
           <ul class="treeview-menu">
             <li><a href="{{url('/users/')}}">Usuários</a></li>
             <li><a href="{{url('/perfis/')}}">Perfis</a></li>
-            <li><a href="{{url('/permissions/')}}">Permissões</a></li>
+            <li><a href="{{url('/permissoes/')}}">Permissões</a></li>
           </ul>
         </li>
       </ul>

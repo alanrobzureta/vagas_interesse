@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Perfil;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class PerfilController extends Controller
 {
@@ -15,7 +14,9 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        //
+        $perfis = Perfil::all();
+        
+        return view('perfis.index', compact('perfis'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PerfilController extends Controller
      */
     public function create()
     {
-        //
+        return view('perfis.create');
     }
 
     /**
@@ -36,7 +37,12 @@ class PerfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $perfil = new Perfil();
+        $perfil->nome = $request->name;
+              
+        $perfil->save();
+        
+        return view('perfis.show', compact('perfil'));
     }
 
     /**
@@ -47,7 +53,9 @@ class PerfilController extends Controller
      */
     public function show($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        
+        return view('perfis.show', compact('perfil'));
     }
 
     /**
@@ -58,7 +66,9 @@ class PerfilController extends Controller
      */
     public function edit($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        
+        return view('perfis.edit', compact('perfil'));
     }
 
     /**
@@ -70,7 +80,12 @@ class PerfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $perfil = Perfil::find($id);
+        
+        $perfil->nome = $request->nome;
+        $user->save();
+        
+        return view('perfis.show', compact('perfil'));
     }
 
     /**
@@ -81,6 +96,9 @@ class PerfilController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        $perfil->delete();
+        
+        return redirect('/perfis/');
     }
 }

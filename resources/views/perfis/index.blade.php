@@ -1,31 +1,27 @@
 @extends('layouts.admin_template')
 
 @section('content')
-
+CADASTRO DE PERFIS DE USUÁRIO
 <p class="text-right">
-    <a href="{{url('/users/create')}}" class="btn btn-default navbar-btn"><i class="fa fa-edit"></i>Cadastrar</a>
+    <a href="{{url('/perfis/create')}}" class="btn btn-default navbar-btn"><i class="fa fa-edit"></i>Cadastrar</a>
 </p>
 
 
-<table id="tbl_users" class="display" cellspacing="0" width="100%">
+<table id="tbl_perfis" class="display" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th class="text-left">Nome</th>
-            <th class="text-left">CPF</th>
-            <th class="text-left">Email</th>
+            <th class="text-left">Nome</th>            
             <th class="text-center">Operações</th>                
         </tr>
     </thead>
     <tbody> 
-        @foreach($users as $user)
+        @foreach($perfis as $perfil)
             <tr>
-                <td class="text-left">{{$user->name}}</td>                    
-                <td class="text-left">{{$user->cpf}}</td>                    
-                <td class="text-left">{{$user->email}}</td>                    
+                <td class="text-left">{{$perfil->nome}}</td>                    
                 <td class="text-center">
-                    <a href="{{url('/users/'.$user->id)}}"><i class="fa fa-eye"></i></a>
-                    <a href="{{url('/users/'.$user->id.'/edit')}}"><i class="fa fa-pencil"></i></a>
-                    {!! Form::open(['url' => URL::to("users/$user->id"),'accept-charset'=>'UTF-8','class'=>'formDelete']) !!}
+                    <a href="{{url('/perfis/'.$perfil->id_perfil)}}"><i class="fa fa-eye"></i></a>
+                    <a href="{{url('/perfis/'.$perfil->id_perfil.'/edit')}}"><i class="fa fa-pencil"></i></a>
+                    {!! Form::open(['url' => URL::to("perfis/$perfil->id_perfil"),'accept-charset'=>'UTF-8','class'=>'formDelete']) !!}
                     {!! method_field('DELETE') !!}
                     {!! Form::token() !!}
                     <button type="submit" id='destroy' class="btn btn-link fa fa-remove" data-confirm="Deseja realmente excluir este item?" alt="Excluir" title="Excluir"></button>
@@ -44,7 +40,7 @@ $(document).ready(function() {
         return confirm("Deseja realmente excluir este item?");
     }); 
         
-    var table = $('#tbl_users').DataTable({
+    var table = $('#tbl_perfis').DataTable({
         "language": {
             "lengthMenu": "Mostrar  _MENU_  registros por página",
             "zeroRecords": "Nenhum registro encontrado",

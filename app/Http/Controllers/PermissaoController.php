@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Permissao;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class PermissaoController extends Controller
 {
@@ -15,7 +14,9 @@ class PermissaoController extends Controller
      */
     public function index()
     {
-        //
+        $permissoes = Permissao::all();
+        
+        return view('permissoes.index', compact('permissoes'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PermissaoController extends Controller
      */
     public function create()
     {
-        //
+        return view('permissoes.create');
     }
 
     /**
@@ -36,7 +37,12 @@ class PermissaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $permissoes = new Perfil();
+        $permissoes->nome = $request->nome;
+              
+        $permissoes->save();
+        
+        return view('permissoes.show', compact('permissoes'));
     }
 
     /**
@@ -47,7 +53,9 @@ class PermissaoController extends Controller
      */
     public function show($id)
     {
-        //
+        $permissao = Permissao::find($id);
+        
+        return view('permissoes.show', compact('permissao'));
     }
 
     /**
@@ -58,7 +66,9 @@ class PermissaoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permissao = Permissao::find($id);
+        
+        return view('permissoes.edit', compact('permissao'));
     }
 
     /**
@@ -70,7 +80,12 @@ class PermissaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $permissao = Permissao::find($id);
+        
+        $permissao->nome = $request->nome;
+        $permissao->save();
+        
+        return view('permissoes.show', compact('permissao'));
     }
 
     /**
@@ -81,6 +96,9 @@ class PermissaoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permissao = Permissao::find($id);
+        $permissao->delete();
+        
+        return redirect('/permissoes/');
     }
 }

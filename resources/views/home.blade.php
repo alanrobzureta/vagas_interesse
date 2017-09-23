@@ -31,7 +31,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="javascript:void(0)" class="uppercase">Visualizar todos os usuários</a>
+                  <a href="{{url('/users/')}}" class="uppercase">Visualizar todos os usuários</a>
                 </div>
                 <!-- /.box-footer -->
               </div>

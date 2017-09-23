@@ -1,21 +1,15 @@
 @extends('layouts.admin_template')
-@section('content')
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif  
+@section('content')      
     <div class="box box-primary">
         <div class="register-box-body">
             <h3 class="box-title text-center">Alteração dos dados de {{ $user->name }}</h3>
-            <form action="{{ url('/users/'.$user->id) }}" method="post" id="form" >
-                {{ csrf_field() }}
+            @include('errors.list')
+            {!! Form::open(['url' => URL::to("users/$user->id")]) !!}
+            {!! method_field('PUT') !!}
+            {!! Form::token() !!}
+                
                 <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <input type="text" class="form-control" placeholder="nome" value="{{ $user->name }}" id="name" name="name">
+                    {!! Form::text('name', $user->name, ['class'=>'form-control', 'maxlength'=>150, 'placeholder'=>'Nome']) !!}                    
                       @if ($errors->has('name'))
                           <span class="help-block">
                               <strong>{{ $errors->first('name') }}</strong>
@@ -25,7 +19,7 @@
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('cpf') ? ' has-error' : '' }}">
-                    <input type="text" class="form-control" placeholder="cpf" value="{{ $user->cpf }}" id="cpf" name="cpf">
+                    {!! Form::text('cpf', $user->cpf, ['class'=>'form-control', 'maxlength'=>150, 'placeholder'=>'CPF']) !!}                    
                       @if ($errors->has('cpf'))
                           <span class="help-block">
                               <strong>{{ $errors->first('cpf') }}</strong>
@@ -35,7 +29,7 @@
                 </div>  
 
                 <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <input type="email" class="form-control" placeholder="Email" value="{{ $user->email }}" id="email" name="email">
+                   {!! Form::text('email', $user->email, ['class'=>'form-control', 'maxlength'=>150, 'placeholder'=>'Email']) !!}                    
                       @if ($errors->has('email'))
                           <span class="help-block">
                               <strong>{{ $errors->first('email') }}</strong>
@@ -43,25 +37,17 @@
                       @endif
                   <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-
-                <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <input type="password" class="form-control" placeholder="senha" id="password" name="password" value="{{ $user->password }}">
-                      @if ($errors->has('password'))
-                          <span class="help-block">
-                              <strong>{{ $errors->first('password') }}</strong>
-                          </span>
-                      @endif
-                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-
                 <div class="row">
                   <!-- /.col -->
                   <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button>
+                    {!! Form::submit('Alterar', ['class'=>'btn btn-primary btn-block btn-flat']) !!}                      
                   </div>
+                  <div class="col-xs-4">
+                      <a href="{{url('/users/')}}" class="btn btn-default">Voltar</a>
+                  </div>                  
                   <!-- /.col -->
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
         <!-- /.form-box -->

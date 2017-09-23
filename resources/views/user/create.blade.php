@@ -1,21 +1,13 @@
 @extends('layouts.admin_template')
-@section('content')
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif  
+@section('content')    
     <div class="box box-primary">
         <div class="register-box-body">
             <h3 class="box-title text-center">Formulário de Cadastro</h3>
-            <form action="{{ url('/users/store/') }}" method="post" id="form" >
-                {{ csrf_field() }}
+            @include('errors.list')
+            {!! Form::open(['url' => URL::to("users"),'id'=>'form']) !!}            
+            {!! Form::token() !!}
                 <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <input type="text" class="form-control" placeholder="nome" value="{{ old('name') }}" id="name" name="name">
+                    {!! Form::text('name',old('name'), ['class'=>'form-control', 'maxlength'=>150, 'placeholder'=>'Nome']) !!}                    
                       @if ($errors->has('name'))
                           <span class="help-block">
                               <strong>{{ $errors->first('name') }}</strong>
@@ -25,7 +17,7 @@
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('cpf') ? ' has-error' : '' }}">
-                    <input type="text" class="form-control" placeholder="cpf" value="{{ old('cpf') }}" id="cpf" name="cpf">
+                    {!! Form::text('cpf',old('cpf'), ['class'=>'form-control', 'maxlength'=>150, 'placeholder'=>'CPF']) !!}                    
                       @if ($errors->has('cpf'))
                           <span class="help-block">
                               <strong>{{ $errors->first('cpf') }}</strong>
@@ -35,7 +27,7 @@
                 </div>  
 
                 <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" id="email" name="email">
+                   {!! Form::text('email',old('email'), ['class'=>'form-control', 'maxlength'=>150, 'placeholder'=>'Email']) !!}                    
                       @if ($errors->has('email'))
                           <span class="help-block">
                               <strong>{{ $errors->first('email') }}</strong>
@@ -45,7 +37,7 @@
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <input type="password" class="form-control" placeholder="senha" id="password" name="password">
+                    {!! Form::password('password', ['class'=>'form-control', 'maxlength'=>150, 'placeholder'=>'Senha']) !!}                    
                       @if ($errors->has('password'))
                           <span class="help-block">
                               <strong>{{ $errors->first('password') }}</strong>
@@ -55,16 +47,13 @@
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-
-                          <input id="password-confirm" placeholder="Repetir senha" type="password" class="form-control" name="password_confirmation">
-
-                          @if ($errors->has('password_confirmation'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('password_confirmation') }}</strong>
-                              </span>
-                          @endif
-                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-
+                    <input id="password-confirm" placeholder="Repetir senha" type="password" class="form-control" name="password_confirmation">
+                    @if ($errors->has('password_confirmation'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                        </span>
+                    @endif
+                   <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>    
 
                 <div class="row">
@@ -74,7 +63,7 @@
                   </div>
                   <!-- /.col -->
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
         <!-- /.form-box -->
