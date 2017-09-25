@@ -17,8 +17,8 @@
                   <ul class="users-list clearfix">
                     <li>
                         <a class="users-list-name" href="#">{{$permissao->nome}}</a>
-                        <span class="users-list-date">Data de Cadastro: {{$user->created_at}}</span>
-                        <span class="users-list-date">Última Alteração: {{$user->updated_at}}</span>
+                        <span class="users-list-date">Data de Cadastro: {{$permissao->created_at}}</span>
+                        <span class="users-list-date">Última Alteração: {{$permissao->updated_at}}</span>
                     </li>                            
                   </ul>
                   <!-- /.users-list -->

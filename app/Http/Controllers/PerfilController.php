@@ -37,8 +37,9 @@ class PerfilController extends Controller
      */
     public function store(Request $request)
     {
+        
         $perfil = new Perfil();
-        $perfil->nome = $request->name;
+        $perfil->nome = $request->nome;
               
         $perfil->save();
         

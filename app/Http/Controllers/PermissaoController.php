@@ -37,12 +37,12 @@ class PermissaoController extends Controller
      */
     public function store(Request $request)
     {
-        $permissoes = new Perfil();
-        $permissoes->nome = $request->nome;
+        $permissao = new Permissao();
+        $permissao->nome = $request->nome;
               
-        $permissoes->save();
+        $permissao->save();
         
-        return view('permissoes.show', compact('permissoes'));
+        return view('permissoes.show', compact('permissao'));
     }
 
     /**
