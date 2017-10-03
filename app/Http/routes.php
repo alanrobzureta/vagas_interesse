@@ -21,3 +21,15 @@ Route::group(['middleware'=>['auth']],function() {
     Route::resource('planos','PlanoController');
     Route::resource('empresas','EmpresaController');
 });
+
+Route::get('debug',function(){
+    $user = auth()->user();
+        $debug = "<h1>".$user->name."</h1>";
+        foreach ($user->perfil as $perfil) {
+            $debug .= "<h2>".$perfil->nome."</h2>";
+            foreach ($perfil->permissao as $permissao) {
+                $debug .= $permissao->nome."<hr>";                
+            }
+        }
+    return $debug;    
+});

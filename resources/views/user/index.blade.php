@@ -18,6 +18,7 @@
     </thead>
     <tbody> 
         @foreach($users as $user)
+            @can('listar_usuarios',$user)
             <tr>
                 <td class="text-left">{{$user->name}}</td>                    
                 <td class="text-left">{{$user->cpf}}</td>                    
@@ -33,6 +34,7 @@
                     
                 </td>                                        
             </tr>
+            @endcan
         @endforeach
     </tbody>
 </table>

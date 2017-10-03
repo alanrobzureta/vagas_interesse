@@ -13,4 +13,12 @@ class Perfil extends Model
     protected $fillable = [
         'nome'
     ];
+    
+    public function permissao() {
+        return $this->belongsToMany(Permissao::class, 'perfis_permissoes', 'fk_perfil','fk_permissao');
+    }
+    
+    public function user() {
+        return $this->belongsToMany(User::class, 'users_perfis', 'fk_perfil','fk_user');
+    }
 }
