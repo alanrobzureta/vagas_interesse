@@ -27,7 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         $this->registerPolicies($gate);
-
+        
+        /* 
+         * Verifica todas as permissões e compara com as permissoes do usuário - Dinâmico 
+         * 
+         * https://laravel.com/docs/5.2/authorization
+         */
         $permissoes = Permissao::with('perfil')->get();
         foreach ($permissoes as $permissao) {
             $gate->define($permissao->nome, function(User $user) use ($permissao){
@@ -35,5 +40,11 @@ class AuthServiceProvider extends ServiceProvider
             });
         }
         
+        // Verifica se o usuario tem perfil de SUPER USUÁRIO
+        // Mesmo sem nenhuma permissão adicionada, se o perfil estiver aqui, passará pelo @can 
+        $gate->before(function(User $user, $ability){
+            if($user->hasAnyPerfil('super_user'))
+                return true;
+        });        
     }
 }

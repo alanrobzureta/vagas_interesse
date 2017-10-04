@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Gate;
 
 class UserController extends Controller
 {
@@ -16,6 +17,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        
+        //$this->authorize('listar_usuarios', $users);
+        if(Gate::denies('listar_usuarios', $users))
+            abort(403,'acesso não autorizado');
         
         return view('user.index', compact('users'));
     }
