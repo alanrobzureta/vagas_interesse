@@ -34,7 +34,7 @@ class User extends Authenticatable
     
     public function hasAnyPerfil($perfis) {
         if(is_array($perfis) || is_object($perfis)){
-            return !! $perfis->intersect($this->perfis)->count();
+            return !! $perfis->intersect($this->perfil)->count();
         }
         
         return $this->perfil->contains('nome', $perfis);

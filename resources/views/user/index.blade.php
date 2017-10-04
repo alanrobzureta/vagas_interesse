@@ -17,24 +17,28 @@
         </tr>
     </thead>
     <tbody> 
-        @foreach($users as $user)
-            @can('listar_usuarios',$user)
-            <tr>
-                <td class="text-left">{{$user->name}}</td>                    
-                <td class="text-left">{{$user->cpf}}</td>                    
-                <td class="text-left">{{$user->email}}</td>                    
-                <td class="text-center">
-                    <a href="{{url('/users/'.$user->id)}}"><i class="fa fa-eye"></i></a>
-                    <a href="{{url('/users/'.$user->id.'/edit')}}"><i class="fa fa-pencil"></i></a>
-                    {!! Form::open(['url' => URL::to("users/$user->id"),'accept-charset'=>'UTF-8','class'=>'formDelete']) !!}
-                    {!! method_field('DELETE') !!}
-                    {!! Form::token() !!}
-                    <button type="submit" id='destroy' class="btn btn-link fa fa-remove" data-confirm="Deseja realmente excluir este item?" alt="Excluir" title="Excluir"></button>
-                    {!! Form::close() !!}
-                    
-                </td>                                        
-            </tr>
-            @endcan
+        @foreach($users as $user)            
+                <tr>
+                    <td class="text-left">{{$user->name}}</td>                    
+                    <td class="text-left">{{$user->cpf}}</td>                    
+                    <td class="text-left">{{$user->email}}</td>                    
+                    <td class="text-center">
+                        @can('ver_usuario',$user)
+                            <a href="{{url('/users/'.$user->id)}}"><i class="fa fa-eye"></i></a>
+                        @endcan
+                        @can('editar_usuario',$user)
+                            <a href="{{url('/users/'.$user->id.'/edit')}}"><i class="fa fa-pencil"></i></a>
+                        @endcan
+                        @can('remover_usuario',$user)
+                            {!! Form::open(['url' => URL::to("users/$user->id"),'accept-charset'=>'UTF-8','class'=>'formDelete']) !!}
+                            {!! method_field('DELETE') !!}
+                            {!! Form::token() !!}
+                            <button type="submit" id='destroy' class="btn btn-link fa fa-remove" data-confirm="Deseja realmente excluir este item?" alt="Excluir" title="Excluir"></button>
+                            {!! Form::close() !!}
+                        @endcan
+                    </td>                                        
+                </tr>
+            
         @endforeach
     </tbody>
 </table>
