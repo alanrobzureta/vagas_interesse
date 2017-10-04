@@ -37,8 +37,12 @@
       <ul class="sidebar-menu">
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
-        <li><a href="#"><i class="fa fa-rub"></i> <span>Planos</span></a></li>
+        @can('listar_empresas',Auth::user())
+            <li class="active"><a href="{{url('/empresas/')}}"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
+        @endcan
+        @can('listar_planos',Auth::user())
+            <li><a href="{{url('/planos/')}}"><i class="fa fa-rub"></i> <span>Planos</span></a></li>
+        @endcan
         <li><a href="#"><i class="fa fa-link"></i> <span>Extras</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-gears"></i> <span>Gerenciamento</span>
@@ -47,9 +51,15 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/users/')}}">Usuários</a></li>
-            <li><a href="{{url('/perfis/')}}">Perfis</a></li>
-            <li><a href="{{url('/permissoes/')}}">Permissões</a></li>
+            @can('listar_usuarios',Auth::user())
+                <li><a href="{{url('/users/')}}">Usuários</a></li>
+            @endcan
+            @can('listar_perfis',Auth::user())
+                <li><a href="{{url('/perfis/')}}">Perfis</a></li>
+            @endcan
+            @can('listar_permissoes',Auth::user())
+                <li><a href="{{url('/permissoes/')}}">Permissões</a></li>
+            @endcan            
           </ul>
         </li>
       </ul>
