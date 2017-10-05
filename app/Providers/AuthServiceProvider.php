@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         $permissoes = Permissao::with('perfil')->get();
         foreach ($permissoes as $permissao) {
             $gate->define($permissao->nome, function(User $user) use ($permissao){
-                return $user->hasPermission($permissao);
+                return $user->hasPermission($permissao); //Se retornar true passa
             });
         }
         

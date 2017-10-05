@@ -9,6 +9,17 @@ use Gate;
 
 class UserController extends Controller
 {
+    
+    private $user;
+    
+    public function __construct(User $user){
+        $this->user = $user;
+    }
+    
+    private function checkPermission($permission) {
+        if(Gate::denies($permission, $this->user))
+            abort(403,'acesso não autorizado');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,11 +27,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        
+        $this->checkPermission('listar_usuarios');
+        $users = $this->user->all();
         //$this->authorize('listar_usuarios', $users);
-        if(Gate::denies('listar_usuarios', $users))
-            abort(403,'acesso não autorizado');
+        //auth()->user()->can('listar_usuarios', $users);
+//        if(Gate::denies('listar_usuarios', $users))
+//            abort(403,'acesso não autorizado');
+        
+//        if(Gate::denies('listar_usuarios', $users))
+//            return redirect()->back();
         
         return view('user.index', compact('users'));
     }
@@ -32,6 +47,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->checkPermission('cadastrar_usuario');
         return view('user.create');
     }
 
@@ -43,6 +59,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->checkPermission('cadastrar_usuario');
         $user = new User();
         $user->name = $request->name;
         $user->cpf = $request->cpf;
@@ -61,7 +78,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $this->checkPermission('ver_usuario');
+        $user = $this->user->find($id);
         
         return view('user.show', compact('user'));
     }
@@ -74,7 +92,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $this->checkPermission('editar_usuario');
+        $user = $this->user->find($id);
         
         return view('user.edit', compact('user'));
     }
@@ -88,8 +107,8 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        
-        $user = User::find($id);
+        $this->checkPermission('editar_usuario');   
+        $user = $this->user->find($id);
         
         $user->name = $request->name;
         $user->cpf = $request->cpf;
@@ -109,7 +128,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $this->checkPermission('remover_usuario');   
+
+        $user = $this->user->find($id);
         $user->delete();
         
         return redirect('/users/');

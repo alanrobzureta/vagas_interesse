@@ -25,9 +25,13 @@
                     <td class="text-center">
                         @can('ver_usuario',$user)
                             <a href="{{url('/users/'.$user->id)}}"><i class="fa fa-eye"></i></a>
+                        @else
+                            <i class="fa fa-eye"></i>
                         @endcan
                         @can('editar_usuario',$user)
                             <a href="{{url('/users/'.$user->id.'/edit')}}"><i class="fa fa-pencil"></i></a>
+                        @else
+                            <i class="fa fa-pencil"></i>
                         @endcan
                         @can('remover_usuario',$user)
                             {!! Form::open(['url' => URL::to("users/$user->id"),'accept-charset'=>'UTF-8','class'=>'formDelete']) !!}
@@ -35,6 +39,8 @@
                             {!! Form::token() !!}
                             <button type="submit" id='destroy' class="btn btn-link fa fa-remove" data-confirm="Deseja realmente excluir este item?" alt="Excluir" title="Excluir"></button>
                             {!! Form::close() !!}
+                        @else
+                            <i class="fa fa-remove"></i>
                         @endcan
                     </td>                                        
                 </tr>
